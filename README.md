@@ -13,8 +13,10 @@ Monitoramento de site na AWS com alertas via Telegram.
 2. Criar Sub-redes:
     - Selecione a VPC criada.
     - Crie 4 sub-redes:
-        Nome: subnet-publica-a      	 
+        Nome: subnet-publica-a
+        	 
        	CIDR Block: `10.0.1.0/24`
+      
        Zona de disponibilidade: us-east-1a
 
 3. Criar e Associar um Internet Gateway:
@@ -40,6 +42,7 @@ Monitoramento de site na AWS com alertas via Telegram.
     - IP público ativado
     - Clique em "Create security group"
       * Nome: Sua prefrencia > pegar a chave de segurança > Regras de entrada (Inbound) > Tipo	Porta	Origem > SSH	22	e HTTP	80
+        ## Chave de segurança: muito importante pegar, pois depois não pode pegar novamente depois de criado
 
 6. Acessar a instância via SSH para realizar configurações futuras:
     - Acessar o seu PowerShel > copiar o caminho da sua chave de segurança
@@ -79,11 +82,17 @@ Conectar a ec2
     * Verificar se mensagem chegou no Telegram
     * <img width="1318" height="888" alt="image" src="https://github.com/user-attachments/assets/6d966bce-bbd3-4ea4-a93f-4d739c2c1909" />
     * Verificar registro no log com `tail -f /home/ubuntu/monitoramento.log`
-    * <img width="857" height="337" alt="image" src="https://github.com/user-attachments/assets/d7d50cbd-ea08-4cf2-be5f-eb2dfe55e975" />
+    * <img width="858" height="297" alt="Captura de tela 2025-07-28 160315" src="https://github.com/user-attachments/assets/7c71f416-c5f2-4158-a6f1-76d59c788df3" />
 
-
-
-
+⚠️ Principais Erros e Soluções
+ -  Permission denied 
+    * Solução Usado chmod +x no script
+ -  Falha ao salvar em /var/log
+    * Caminho alterado para /home/ubuntu/monitoramento.log
+ -  Horário errado nas mensagens
+    * Ajustado fuso horário com timedatectl (America/Sao_Paulo)
+ -  Status HTTP 000
+    * Servidor Nginx estava parado, iniciado com systemctl
 
     
 
