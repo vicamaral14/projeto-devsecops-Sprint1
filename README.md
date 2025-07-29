@@ -109,7 +109,7 @@ Conectar a ec2
  -  Horário errado nas mensagens
     * Ajustado fuso horário com timedatectl (America/Sao_Paulo)
  -  Status HTTP 000
-    * Servidor Nginx estava parado, iniciado com systemctlComo configurar User Data na EC2 - Passo a passo
+    * Servidor Nginx estava parado, iniciado com systemctl
 -----
 ## Criar User Data:
 1. Escrevi um script bash que será executado automaticamente na inicialização da instância.
