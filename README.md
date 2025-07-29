@@ -9,6 +9,7 @@ Monitoramento de site na AWS com alertas via Telegram.
     - Nome: `VPC-Projeto`
     - CIDR: `10.0.0.0/16`
       * O CIDR usado é muito comum, pois é amplo,fexivel e evita conflito de redes locais.
+      * Explicação: Esse bloco CIDR cobre mais de 65 mil IPs internos e evita conflitos com redes residenciais (como 192.168.0.0/24).
 
 2. Criar Sub-redes:
     - Selecione a VPC criada.
@@ -18,6 +19,7 @@ Monitoramento de site na AWS com alertas via Telegram.
        	CIDR Block: `10.0.1.0/24`
       
        Zona de disponibilidade: us-east-1a
+      * Por quê? Dividir a rede facilita o gerenciamento e permite organizar serviços públicos/privados.
 
 3. Criar e Associar um Internet Gateway:
     - Nome: IGW-Projeto > Clique em Create.
@@ -78,11 +80,16 @@ Conectar a ec2
 
 ## Etapa 4: Automação e Testes
 1. Acessar http://<SEU_IP_PUBLICO> no navegador > Ver página HTML personalizada
+   <img width="1229" height="811" alt="Captura de tela 2025-07-29 142555" src="https://github.com/user-attachments/assets/9bd27bdd-6aee-453a-92be-813bcf1ba92e" />
+
 2.Teste de falha simulada > `sudo systemctl stop nginx`
-    * Verificar se mensagem chegou no Telegram
-    * <img width="1318" height="888" alt="image" src="https://github.com/user-attachments/assets/6d966bce-bbd3-4ea4-a93f-4d739c2c1909" />
-    * Verificar registro no log com `tail -f /home/ubuntu/monitoramento.log`
-    * <img width="858" height="297" alt="Captura de tela 2025-07-28 160315" src="https://github.com/user-attachments/assets/7c71f416-c5f2-4158-a6f1-76d59c788df3" />
+
+  * Verificar se mensagem chegou no Telegram
+    <img width="775" height="100" alt="Captura de tela 2025-07-29 142722" src="https://github.com/user-attachments/assets/5b370fbf-5b7c-469b-9757-117beae68779" />
+
+ * Verificar registro no log com `tail -f /home/ubuntu/monitoramento.log`
+   <img width="685" height="47" alt="Captura de tela 2025-07-29 142805" src="https://github.com/user-attachments/assets/9283a36b-f335-4eaa-be4a-083d4a7efba9" />
+
 
 ⚠️ Principais Erros e Soluções
  -  Permission denied 
