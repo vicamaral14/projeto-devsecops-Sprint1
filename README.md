@@ -107,7 +107,7 @@ Conectar a ec2
  -  Falha ao salvar em /var/log
     * Caminho alterado para /home/ubuntu/monitoramento.log
  -  Horário errado nas mensagens
-    * Ajustado fuso horário com timedatectl (America/Sao_Paulo)
+    * Alterado para DATA=$(TZ="America/Sao_Paulo" date '+%Y-%m-%d %H:%M:%S')
  -  Status HTTP 000
     * Servidor Nginx estava parado, iniciado com systemctl
 -----
