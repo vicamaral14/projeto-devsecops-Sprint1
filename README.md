@@ -4,14 +4,14 @@ Monitoramento de site na AWS com alertas via Telegram.
 **Desenvolvido por:** Victória Do Amaral  
 **Objetivo:** Criar uma solução automatizada de monitoramento de um site Linux hospedado na AWS, com alertas em tempo real via Telegram e registros de logs no servidor.
 ## Sumário
-- [Etapa 1: Configuração do Ambiente](#etapa-1-configuracao-do-ambiente)
-- [Etapa 2: Configuração do Servidor Web](#etapa-2-configuracao-do-servidor-web)
-- [Etapa 3: Monitoramento e Notificações](#etapa-3-monitoramento-e-notificacao)
-- [Etapa 4: Automação e Testes](#etapa-4-automacao-e-testes)
+- [Etapa 1 Configuração do Ambiente](#etapa-1-configuracao-do-ambiente)
+- [Etapa 2 Configuração do Servidor Web](#etapa-2-configuracao-do-servidor-web)
+- [Etapa 3 Monitoramento e Notificações](#etapa-3-monitoramento-e-notificacoes)
+- [Etapa 4 Automação e Testes](#etapa-4-automacao-e-testes)
 - [Principais Erros e Soluções](#principais-erros-e-solucoes)
-- [Criar User Data:](#criar-user-data)
+- [Criar User Data](#criar-user-data)
 
-## Etapa 1: Configuração do Ambiente
+## Etapa 1 Configuração do Ambiente
 1. Criar uma VPC:
     - Nome: `VPC-Projeto`
     - CIDR: `10.0.0.0/16`
@@ -59,7 +59,7 @@ Monitoramento de site na AWS com alertas via Telegram.
       * ssh -i sua-chave.pem ubuntu@<IP-da-instância>
 ------------------------------------- 
 
-## Etapa 2: Configuração do Servidor Web
+## Etapa 2 Configuração do Servidor Web
 Conectar a ec2
 1.  Instalar Nginx no terminal da ec2
     - sudo apt update > sudo apt install nginx -y
@@ -71,7 +71,7 @@ Conectar a ec2
     - `http://SEU_IP_PUBLICO_DA_EC2`
 ------
 
-## Etapa 3: Monitoramento e Notificações
+## Etapa 3 Monitoramento e Notificações
 1. Criar o Bot no Telegram
     * Acesse o @BotFather no Telegram.
     * Crie um novo bot com o comando: /newbot.
@@ -87,7 +87,7 @@ Conectar a ec2
     * No JSON retornado, localize o campo "chat":{"id":...} → esse é o seu chat_id.
 ---
 
-## Etapa 4: Automação e Testes
+## Etapa 4 Automação e Testes
 1. Acessar http://<SEU_IP_PUBLICO> no navegador > Ver página HTML personalizada
    <img width="1229" height="811" alt="Captura de tela 2025-07-29 142555" src="https://github.com/user-attachments/assets/9bd27bdd-6aee-453a-92be-813bcf1ba92e" />
 
@@ -99,7 +99,7 @@ Conectar a ec2
  * Verificar registro no log com `tail -f /home/ubuntu/monitoramento.log`
    <img width="685" height="47" alt="Captura de tela 2025-07-29 142805" src="https://github.com/user-attachments/assets/9283a36b-f335-4eaa-be4a-083d4a7efba9" />
 
-
+-----
 ## ⚠️ Principais Erros e Soluções
  -  Permission denied 
     * Solução Usado chmod +x no script
@@ -109,7 +109,7 @@ Conectar a ec2
     * Ajustado fuso horário com timedatectl (America/Sao_Paulo)
  -  Status HTTP 000
     * Servidor Nginx estava parado, iniciado com systemctlComo configurar User Data na EC2 - Passo a passo
-
+-----
 ## Criar User Data:
 1. Escrevi um script bash que será executado automaticamente na inicialização da instância.
     * O script faz a atualização do sistema, instala o Nginx e o curl.
