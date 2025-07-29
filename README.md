@@ -52,7 +52,7 @@ Monitoramento de site na AWS com alertas via Telegram.
     - IP público ativado
     - Clique em "Create security group"
       * Nome: Sua prefrencia > pegar a chave de segurança > Regras de entrada (Inbound) > Tipo	Porta	Origem > SSH	22	e HTTP	80
-        ## Chave de segurança: muito importante pegar, pois depois não pode pegar novamente depois de criado
+      * Chave de segurança: muito importante pegar, pois depois não pode pegar novamente depois de criado
 
 6. Acessar a instância via SSH para realizar configurações futuras:
     - Acessar o seu PowerShel > copiar o caminho da sua chave de segurança
