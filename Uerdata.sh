@@ -32,7 +32,7 @@ cat <<EOF > /home/ubuntu/monitoramento.sh
 #!/bin/bash
 
 URL="http://localhost"
-DATA=\$(date '+%Y-%m-%d %H:%M:%S')
+DATA=$(TZ="America/Sao_Paulo" date '+%Y-%m-%d %H:%M:%S')
 LOG="/var/log/monitoramento.log"
 STATUS=\$(curl -s -o /dev/null -w "%{http_code}" \$URL)
 
