@@ -65,17 +65,19 @@ Conectar a ec2
 ------
 
 ## Etapa 3: Monitoramento e Notificações
-1. Crie o arquivo: nano monito.sh
-    - shell script na outro arquivo
-2. Tornar executavel
-    -` chmod +x /home/ubuntu/monitoramento.sh`
-3. Criar bot no telegram
-   - Criar bot no @BotFather > Criar novo bot > Obter o token da API > Enviar mensagem ao bot
-   - Descobrir chat_id > `https://api.telegram.org/bot<SEU_TOKEN>/getUpdates`
-4.  Agendamento com Cron
-   - crontab -e
-   - Adicionar a seguinte linha > `* * * * * /home/ubuntu/monitoramento.sh`
-   - Verificar se a tarefa foi adicionada corretamente > `crontab -l`
+1. Criar o Bot no Telegram
+    * Acesse o @BotFather no Telegram.
+    * Crie um novo bot com o comando: /newbot.
+    * Escolha um nome e um nome de usuário para o bot.
+    * Copie o token da API fornecido.
+6. Enviar uma mensagem para seu bot
+    * Acesse seu bot recém-criado no Telegram.
+    * Envie qualquer mensagem (ex: "teste") para iniciar a conversa.
+9. Obter o chat_id
+    * Acesse no navegador o seguinte link, substituindo SEU_TOKEN pelo token do seu bot:
+
+    * https://api.telegram.org/botSEU_TOKEN/getUpdates
+    * No JSON retornado, localize o campo "chat":{"id":...} → esse é o seu chat_id.
 ---
 
 ## Etapa 4: Automação e Testes
