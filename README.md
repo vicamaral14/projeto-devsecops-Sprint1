@@ -15,7 +15,7 @@ Monitoramento de site na AWS com alertas via Telegram.
 1. Criar uma VPC:
     - Nome: `VPC-Projeto`
     - CIDR: `10.0.0.0/16`
-      * O CIDR usado é muito comum, pois é amplo,fexivel e evita conflito de redes locais.
+      * O CIDR usado é muito comum, pois é amplo e evita conflito de redes locais.
       * Explicação: Esse bloco CIDR cobre mais de 65 mil IPs internos e evita conflitos com redes residenciais (como 192.168.0.0/24).
 
 2. Criar Sub-redes:
