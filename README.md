@@ -21,11 +21,12 @@ Monitoramento de site na AWS com alertas via Telegram.
 2. Criar Sub-redes:
     - Selecione a VPC criada.
     - Crie 4 sub-redes:
-        Nome: subnet-publica-a
-        	 
-       	CIDR Block: `10.0.1.0/24`
       
-       Zona de disponibilidade: us-east-1a
+      *  Nome: subnet-publica-a
+        	 
+       * CIDR Block: `10.0.1.0/24`
+      
+       * Zona de disponibilidade: us-east-1a
       * Por quê? Dividir a rede facilita o gerenciamento e permite organizar serviços públicos/privados.
 
 3. Criar e Associar um Internet Gateway:
