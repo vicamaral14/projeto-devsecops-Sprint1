@@ -3,6 +3,13 @@ Monitoramento de site na AWS com alertas via Telegram.
 -------------------------------------------------------------
 **Desenvolvido por:** Victória Do Amaral  
 **Objetivo:** Criar uma solução automatizada de monitoramento de um site Linux hospedado na AWS, com alertas em tempo real via Telegram e registros de logs no servidor.
+## Sumário
+- [Etapa 1: Configuração do Ambiente](#etapa-1-configuracao-do-ambiente)
+- [Etapa 2: Configuração do Servidor Web](#etapa-2-configuracao-do-servidor-web)
+- [Etapa 3: Monitoramento e Notificações](#etapa-3-monitoramento-e-notificacao)
+- [Etapa 4: Automação e Testes](#etapa-4-automacao-e-testes)
+- [Principais Erros e Soluções](#principais-erros-e-solucoes)
+- [Criar User Data:](#criar-user-data)
 
 ## Etapa 1: Configuração do Ambiente
 1. Criar uma VPC:
@@ -93,7 +100,7 @@ Conectar a ec2
    <img width="685" height="47" alt="Captura de tela 2025-07-29 142805" src="https://github.com/user-attachments/assets/9283a36b-f335-4eaa-be4a-083d4a7efba9" />
 
 
-⚠️ Principais Erros e Soluções
+## ⚠️ Principais Erros e Soluções
  -  Permission denied 
     * Solução Usado chmod +x no script
  -  Falha ao salvar em /var/log
@@ -101,7 +108,31 @@ Conectar a ec2
  -  Horário errado nas mensagens
     * Ajustado fuso horário com timedatectl (America/Sao_Paulo)
  -  Status HTTP 000
-    * Servidor Nginx estava parado, iniciado com systemctl
+    * Servidor Nginx estava parado, iniciado com systemctlComo configurar User Data na EC2 - Passo a passo
+
+## Criar User Data:
+1. Escrevi um script bash que será executado automaticamente na inicialização da instância.
+    * O script faz a atualização do sistema, instala o Nginx e o curl.
+    * Inicia e habilita o Nginx para iniciar junto com a instância.
+    * Cria uma página HTML simples para teste.
+    * Configura um script de monitoramento para verificar a disponibilidade do site.
+    * Configura notificações via Telegram para alertas.
+
+2. Adicionar o script na criação da instância:
+    * No console da AWS, ao criar a instância EC2, na etapa Configurar detalhes da instância, colei o script no campo User Data.
+    * Certifiquei-me que o script estivesse em formato bash iniciando com #!/bin/bash.
+
+3. Definir as permissões da instância e rede:
+    * Configurei o grupo de segurança para permitir acesso HTTP (porta 80) para testar o Nginx.
+    * Configurei a VPC e sub-rede pública para a instância ter acesso externo.
+
+4. Inicializar a instância:
+    * Lancei a instância e aguardei o script User Data ser executado automaticamente.
+    * Verifiquei se o Nginx estava rodando e se a página HTML estava acessível via navegador.
+
+5. Testar o monitoramento:
+    * O script de monitoramento roda em background e verifica o status do servidor.
+    * Se o site ficar fora do ar, o script envia uma notificação para um chat do Telegram via bot.
 
     
 
