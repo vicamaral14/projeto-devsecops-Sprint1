@@ -1,7 +1,7 @@
 #!/bin/bash
 
 URL="http://localhost"
-DATA=$(date '+%Y-%m-%d %H:%M:%S')
+DATA=$(TZ="America/Sao_Paulo" date '+%Y-%m-%d %H:%M:%S')
 LOG="/home/ubuntu/monitoramento.log"
 STATUS=$(curl -s -o /dev/null -w "%{http_code}" $URL)
 
