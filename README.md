@@ -102,6 +102,7 @@ Conectar a ec2
     * https://api.telegram.org/botSEU_TOKEN/getUpdates
     * No JSON retornado, localize o campo "chat":{"id":...} → esse é o seu chat_id.
    4.Criar Shell sript
+    * Código do shell script no monito.sh
     * Escreva no terminal nano monito.sh
     * Salve Ctrl +o e saia ctrl + x
     * De a permissão chmod +x monito.sh
@@ -122,7 +123,7 @@ Conectar a ec2
 
 -----
 ## 📜 Criar User Data
-* Para ter o código acesse o userdata.sh
+* Para ter o código acesse o https://github.com/vicamaral14/projeto-devsecops-Sprint1/commit/0aa4d40e00280692d3447d5e680f22a139e29642
 1. Escrevi um script bash que será executado automaticamente na inicialização da instância.
     * O script faz a atualização do sistema, instala o Nginx e o curl.
     * Inicia e habilita o Nginx para iniciar junto com a instância.
@@ -145,8 +146,3 @@ Conectar a ec2
 5. Testar o monitoramento:
     * O script de monitoramento roda em background e verifica o status do servidor.
     * Se o site ficar fora do ar, o script envia uma notificação para um chat do Telegram via bot.
-
-    
-
-
-
