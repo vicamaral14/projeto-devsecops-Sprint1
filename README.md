@@ -24,6 +24,7 @@ Onde encontrar: Console da AWS → digite “VPC” na busca → clique em VPCs
 ✅ Criar Sub-redes
 Onde encontrar: Dentro da VPC → menu lateral → Subnets
 * Crie 4 sub-redes (2 publicas e 2 privadas):
+
 Exemplo:
 * Nome: subnet-publica-a
     * CIDR: Escolha uma
