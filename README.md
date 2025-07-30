@@ -7,18 +7,10 @@ Desenvolvido por: Victória do Amaral
 ---
 🎯 Objetivo
 Automatizar o monitoramento de um site hospedado em uma instância Linux (EC2) na AWS, com:
-* Notificações via Telegram em caso de falha;
+* Notificações via Telegram;
 * Registro de logs no servidor;
 * Infraestrutura montada do zero com VPC, sub-redes, gateway e regras de acesso.
 ------
-
-## Sumário
-- [Etapa 1 Configuração do Ambiente](#etapa-1-configuracao-do-ambiente)
-- [Etapa 2 Configuração do Servidor Web](#etapa-2-configuracao-do-servidor-web)
-- [Etapa 3 Monitoramento e Notificações](#etapa-3-monitoramento-e-notificacoes)
-- [Etapa 4 Automação e Testes](#etapa-4-automacao-e-testes)
-- [Principais Erros e Soluções](#principais-erros-e-solucoes)
-- [Criar User Data](#criar-user-data)
 
 ## 🧱 Etapa 1 - Configuração do Ambiente
 Acesse o console da AWS: https://console.aws.amazon.com/
