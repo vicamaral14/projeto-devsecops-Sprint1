@@ -42,29 +42,36 @@ Exemplo:
 
 ✅ Criar Internet Gateway
 Onde encontrar: Menu lateral da VPC → Internet Gateways
+
 * Clique em Create Internet Gateway → Nome: IGW-Projeto
+  
 * Depois de criado, vá em Actions → Attach to VPC → selecione a VPC-Projeto
 
 ✅ Criar Tabela de Rotas para Internet:
 Onde encontrar: Menu lateral da VPC → Route Tables
     - Nome: rota-publica
-    - VPC: selecione sua VPC
-    - Vá na aba Routes > Edit Routes > Clique em Add Route:
-    - Destination: `0.0.0.0/0`
-      * Qualquer ip de qualquer lugar
+    
+   - VPC: selecione sua VPC
+    
+   - Vá na aba Routes > Edit Routes > Clique em Add Route:
+
+  - Destination: `0.0.0.0/0`
+    * Qualquer ip de qualquer lugar
     - Target: selecione seu Internet Gateway
-    -Vá em Subnet Associations > Edit subnet associations > Marque as duas sub-redes públicas e clique em Save.
+    - Vá em Subnet Associations > Edit subnet associations > Marque as duas sub-redes públicas e clique em Save.
 
 ✅ Criar Instância EC2
 Onde encontrar: Console da AWS → digite “EC2” → clique em Instâncias
-    - Colocar as tags
-    - Nome da instância: O que quiser
-    - AMI: Ubuntu
-    - Tipo: `t2.micro` (Free Tier)
-    - Sub-rede pública
+* Colocar as tags
+* Nome da instância: O que quiser
+* AMI: Ubuntu
+* Tipo: `t2.micro` (Free Tier)
+* Sub-rede pública
+  
     - VPC: selecione a VPC que você criou 
     - IP público ativado
     - Clique em "Create security group"
+      
       * Nome: Sua prefrencia > pegar a chave de segurança > Regras de entrada (Inbound) > Tipo	Porta	Origem > SSH	22	e HTTP	80
       * Chave de segurança: muito importante pegar, pois depois não pode pegar novamente depois de criado
 
