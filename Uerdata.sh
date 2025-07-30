@@ -37,16 +37,21 @@ LOG="/home/ubuntu/monitoramento.log"
 DATA=$(TZ="America/Sao_Paulo" date '+%Y-%m-%d %H:%M:%S')
 STATUS=$(curl -s -o /dev/null -w "%{http_code}" $URL)
 
-if [ "$STATUS" != "200" ]; then
-  MSG="🚨 [$DATA] ALERTA: Site $URL está com problema! Status: $STATUS"
-  curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
-    -d chat_id=$CHAT_ID \
-    -d text="$MSG" > /dev/null
+# Verificar status e gerar mensagem
+if [ "$STATUS" -ne 200 ]; then
+    MENSAGEM="[$DATA] ⚠️ Alerta: site fora do ar! Status HTTP: $STATUS"
+    echo "$MENSAGEM"
+    echo "$DATA - ERRO - Site fora do ar! Status: $STATUS" >> $LOG
+else
+    MENSAGEM="[$DATA] ✅ Site funcionando normalmente. Status HTTP: $STATUS"
+    echo "$DATA - OK - Site funcionando. Status: $STATUS" >> $LOG
 fi
 
-echo "[$DATA] Status: $STATUS" >> $LOG
-SCRIPT
-
+# Enviar mensagem para o Telegram
+curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
+     -d chat_id="$CHAT_ID" \
+     -d text="$MENSAGEM" > /dev/null
+     
 # Dá permissão de execução pro script
 chmod +x /home/ubuntu/monitoramento.sh
 
