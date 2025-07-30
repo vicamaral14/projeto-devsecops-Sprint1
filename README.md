@@ -74,11 +74,12 @@ Onde encontrar: Console da AWS → digite “EC2” → clique em Instâncias
       
       * Nome: Sua prefrencia > pegar a chave de segurança > Regras de entrada (Inbound) > Tipo	Porta	Origem > SSH	22	e HTTP	80
       * Chave de segurança: muito importante pegar, pois depois não pode pegar novamente depois de criado
-
+        
 ✅ Acesso via SSH
+
 No seu terminal ou PowerShell:
-    - Copiar o caminho da sua chave de segurança
-    - exemplo para o terminal:
+ - Copiar o caminho da sua chave de segurança
+ - exemplo para o terminal:
       * ssh -i sua-chave.pem ubuntu@<IP-da-instância>
 ------------------------------------- 
 
