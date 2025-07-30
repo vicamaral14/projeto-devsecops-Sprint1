@@ -1,8 +1,17 @@
-# Projeto-devsecops-Sprint1
-Monitoramento de site na AWS com alertas via Telegram.
--------------------------------------------------------------
-**Desenvolvido por:** Victória Do Amaral  
-**Objetivo:** Criar uma solução automatizada de monitoramento de um site Linux hospedado na AWS, com alertas em tempo real via Telegram e registros de logs no servidor.
+## 🚀 Projeto DevSecOps - Sprint 1
+
+Monitoramento de Site na AWS com Alertas via Telegram
+
+Desenvolvido por: Victória do Amaral
+
+---
+🎯 Objetivo
+Automatizar o monitoramento de um site hospedado em uma instância Linux (EC2) na AWS, com:
+* Notificações via Telegram em caso de falha;
+* Registro de logs no servidor;
+* Infraestrutura montada do zero com VPC, sub-redes, gateway e regras de acesso.
+------
+
 ## Sumário
 - [Etapa 1 Configuração do Ambiente](#etapa-1-configuracao-do-ambiente)
 - [Etapa 2 Configuração do Servidor Web](#etapa-2-configuracao-do-servidor-web)
@@ -11,29 +20,33 @@ Monitoramento de site na AWS com alertas via Telegram.
 - [Principais Erros e Soluções](#principais-erros-e-solucoes)
 - [Criar User Data](#criar-user-data)
 
-## Etapa 1 Configuração do Ambiente
-1. Criar uma VPC:
-    - Nome: `VPC-Projeto`
-    - CIDR: `10.0.0.0/16`
-      * O CIDR usado é muito comum, pois é amplo e evita conflito de redes locais.
-      * Explicação: Esse bloco CIDR cobre mais de 65 mil IPs internos e evita conflitos com redes residenciais (como 192.168.0.0/24).
+## 🧱 Etapa 1 - Configuração do Ambiente
+Acesse o console da AWS: https://console.aws.amazon.com/
 
-2. Criar Sub-redes:
-    - Selecione a VPC criada.
-    - Crie 4 sub-redes:
-      
-      *  Nome: subnet-publica-a
-        	 
-       * CIDR Block: `10.0.1.0/24`
-      
-       * Zona de disponibilidade: us-east-1a
-      * Por quê? Dividir a rede facilita o gerenciamento e permite organizar serviços públicos/privados.
+✅ Criar uma VPC
+Onde encontrar: Console da AWS → digite “VPC” na busca → clique em VPCs
+* Clique em Create VPC
+* Nome: VPC-Projeto
+* IPv4 CIDR: 10.0.0.0/16 (espaço grande e sem conflito com redes caseiras)
+  
+✅ Criar Sub-redes
+Onde encontrar: Dentro da VPC → menu lateral → Subnets
+* Crie 4 sub-redes (2 publicas e 2 privadas):
+Exemplo:
+* Nome: subnet-publica-a
+    * CIDR: Escolha uma
+    * Zona: us-east-1a
+* Nome: subnet-publica-b
+    * CIDR: Escolha uma
+    * Zona: us-east-1b
 
-3. Criar e Associar um Internet Gateway:
-    - Nome: IGW-Projeto > Clique em Create.
-    - clique em Actions > Attach to VPC > selecione sua VPC.
+✅ Criar Internet Gateway
+Onde encontrar: Menu lateral da VPC → Internet Gateways
+* Clique em Create Internet Gateway → Nome: IGW-Projeto
+* Depois de criado, vá em Actions → Attach to VPC → selecione a VPC-Projeto
 
-4. Criar Tabela de Rotas para Internet:
+✅ Criar Tabela de Rotas para Internet:
+Onde encontrar: Menu lateral da VPC → Route Tables
     - Nome: rota-publica
     - VPC: selecione sua VPC
     - Vá na aba Routes > Edit Routes > Clique em Add Route:
@@ -42,7 +55,8 @@ Monitoramento de site na AWS com alertas via Telegram.
     - Target: selecione seu Internet Gateway
     -Vá em Subnet Associations > Edit subnet associations > Marque as duas sub-redes públicas e clique em Save.
 
-5. Criar uma instância EC2 na AWS:
+✅ Criar Instância EC2
+Onde encontrar: Console da AWS → digite “EC2” → clique em Instâncias
     - Colocar as tags
     - Nome da instância: O que quiser
     - AMI: Ubuntu
@@ -54,13 +68,14 @@ Monitoramento de site na AWS com alertas via Telegram.
       * Nome: Sua prefrencia > pegar a chave de segurança > Regras de entrada (Inbound) > Tipo	Porta	Origem > SSH	22	e HTTP	80
       * Chave de segurança: muito importante pegar, pois depois não pode pegar novamente depois de criado
 
-6. Acessar a instância via SSH para realizar configurações futuras:
-    - Acessar o seu PowerShel > copiar o caminho da sua chave de segurança
+✅ Acesso via SSH
+No seu terminal ou PowerShell:
+    - Copiar o caminho da sua chave de segurança
     - exemplo para o terminal:
       * ssh -i sua-chave.pem ubuntu@<IP-da-instância>
 ------------------------------------- 
 
-## Etapa 2 Configuração do Servidor Web
+## 🌐 Etapa 2 - Configuração do Servidor Web
 Conectar a ec2
 1.  Instalar Nginx no terminal da ec2
     - sudo apt update > sudo apt install nginx -y
@@ -72,23 +87,28 @@ Conectar a ec2
     - `http://SEU_IP_PUBLICO_DA_EC2`
 ------
 
-## Etapa 3 Monitoramento e Notificações
+## 📡 Etapa 3 - Monitoramento e Notificações
 1. Criar o Bot no Telegram
     * Acesse o @BotFather no Telegram.
     * Crie um novo bot com o comando: /newbot.
     * Escolha um nome e um nome de usuário para o bot.
     * Copie o token da API fornecido.
-6. Enviar uma mensagem para seu bot
+2. Enviar uma mensagem para seu bot
     * Acesse seu bot recém-criado no Telegram.
     * Envie qualquer mensagem (ex: "teste") para iniciar a conversa.
-9. Obter o chat_id
+3. Obter o chat_id
     * Acesse no navegador o seguinte link, substituindo SEU_TOKEN pelo token do seu bot:
 
     * https://api.telegram.org/botSEU_TOKEN/getUpdates
     * No JSON retornado, localize o campo "chat":{"id":...} → esse é o seu chat_id.
+   4.Criar Shell sript
+    * Escreva no terminal nano monito.sh
+    * Salve Ctrl +o e saia ctrl + x
+    * De a permissão chmod +x monito.sh
+
 ---
 
-## Etapa 4 Automação e Testes
+## 🔁 Etapa 4 - Automação e Testes
 1. Acessar http://<SEU_IP_PUBLICO> no navegador > Ver página HTML personalizada
    <img width="1229" height="811" alt="Captura de tela 2025-07-29 142555" src="https://github.com/user-attachments/assets/9bd27bdd-6aee-453a-92be-813bcf1ba92e" />
 
@@ -101,17 +121,8 @@ Conectar a ec2
    <img width="685" height="47" alt="Captura de tela 2025-07-29 142805" src="https://github.com/user-attachments/assets/9283a36b-f335-4eaa-be4a-083d4a7efba9" />
 
 -----
-## ⚠️ Principais Erros e Soluções
- -  Permission denied 
-    * Solução Usado chmod +x no script
- -  Falha ao salvar em /var/log
-    * Caminho alterado para /home/ubuntu/monitoramento.log
- -  Horário errado nas mensagens
-    * Alterado para DATA=$(TZ="America/Sao_Paulo" date '+%Y-%m-%d %H:%M:%S')
- -  Status HTTP 000
-    * Servidor Nginx estava parado, iniciado com systemctl
------
-## Criar User Data:
+## 📜 Criar User Data
+* Para ter o código acesse o userdata.sh
 1. Escrevi um script bash que será executado automaticamente na inicialização da instância.
     * O script faz a atualização do sistema, instala o Nginx e o curl.
     * Inicia e habilita o Nginx para iniciar junto com a instância.
